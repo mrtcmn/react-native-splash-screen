@@ -21,7 +21,7 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final int themeResId) {
+    public static void show(final Activity activity,final int layoutResId ,  final int themeResId) {
         if (activity == null) return;
         mActivity = new WeakReference<Activity>(activity);
         activity.runOnUiThread(new Runnable() {
@@ -29,7 +29,7 @@ public class SplashScreen {
             public void run() {
                 if (!activity.isFinishing()) {
                     mSplashDialog = new Dialog(activity, themeResId);
-                    mSplashDialog.setContentView(R.layout.launch_screen);
+                    mSplashDialog.setContentView(layoutResId);
                     mSplashDialog.setCancelable(false);
 
                     if (!mSplashDialog.isShowing()) {
@@ -43,17 +43,17 @@ public class SplashScreen {
     /**
      * 打开启动屏
      */
-    public static void show(final Activity activity, final boolean fullScreen) {
+    public static void show(final Activity activity, final int layoutID , final boolean fullScreen) {
         int resourceId = fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme;
 
-        show(activity, resourceId);
+        show(activity, layoutID, resourceId);
     }
 
     /**
      * 打开启动屏
      */
     public static void show(final Activity activity) {
-        show(activity, false);
+        show(activity,R.layout.launch_screen, false);
     }
 
     /**
